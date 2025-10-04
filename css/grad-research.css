@@ -1,0 +1,79 @@
+/* ============================
+   research.css — Graduate Research (dark)
+   Depends on: colors.css, text.css, ui.css
+   ============================ */
+
+/* База тёмной страницы */
+.theme-dark, :root.theme-dark {
+  background: var(--surface-alt);
+  color: var(--text-primary);
+}
+
+/* Hero */
+.hero.hero--gradient {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+}
+.hero h1, .hero p { color: var(--text-primary); }
+
+/* Карточки */
+.card{
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 12px 22px -12px rgba(0,0,0,.45),
+    0 0 0 1px color-mix(in oklab, var(--brand) 16%, transparent);
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--brand) 38%, var(--border-color));
+  box-shadow:
+    0 16px 28px -14px rgba(0,0,0,.48),
+    0 0 0 1px color-mix(in oklab, var(--brand) 22%, transparent);
+}
+.card__body{ padding: 1.1rem 1.2rem; }
+.card h2, .card h3{ color: var(--brand); margin-bottom: .25rem; }
+
+/* Медиа/логотипы */
+.card__media img{
+  width:100%; height:auto; display:block;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 14px rgba(0,0,0,.45);
+}
+
+/* Списки */
+.card ul, .card ol { padding-left: 1.1rem; margin: .25rem 0 0; }
+.card li { line-height: 1.65; }
+.card ul li::marker { color: color-mix(in oklab, var(--brand) 85%, var(--text-secondary)); font-weight: 700; }
+.card ol li::marker { color: var(--brand); font-weight: 700; }
+
+/* Ключевые даты (левая колонка) */
+.keydates { list-style: none; padding: 0; margin: .25rem 0 0; }
+.keydates li { display:flex; gap:.5rem; padding: .2rem 0; }
+.keydates .k {
+  min-width: 160px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Чипсы */
+.chips { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+/* Ссылки внутри карточек */
+.card a{ border-bottom: 1px solid color-mix(in oklab, var(--brand) 45%, transparent); }
+.card a:hover{ color: var(--color-link-hover); border-color: currentColor; }
+
+/* Footer */
+.footer{
+  background: var(--surface);
+  border-top: 1px solid var(--border-color);
+}
+.footer p{ color: var(--text-secondary); }
+
+/* Responsive */
+@media (max-width: 720px){
+  .keydates .k { min-width: 120px; }
+  .card__body{ padding: 1rem; }
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>FAQ | CS AIU</title>
+  <link rel="shortcut icon" href="../images/favicon.png" />
+
+  <!-- GLOBAL CSS STACK -->
+  <link rel="stylesheet" href="../css/colors.css" />
+  <link rel="stylesheet" href="../css/text.css" />
+  <link rel="stylesheet" href="../css/ui.css" />
+
+  <!-- PAGE CSS -->
+  <link rel="stylesheet" href="../css/faq.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a class="navbar__brand" href="../index.html" aria-label="CS AIU Home">
+        <img src="../images/logo.png" alt="Computer Science Department" style="height:28px" />
+        <span>CS&nbsp;AIU</span>
+      </a>
+
+      <nav class="navbar__menu" aria-label="Primary">
+        <a class="navbar__link" href="../index.html">Home</a>
+
+        <details class="menu-drop">
+          <summary class="navbar__link">Department</summary>
+          <ul class="stack" style="--stack-space:.35rem; margin:.6rem 0 0 0;">
+            <li><a class="navbar__link" href="../department/news.html">News</a></li>
+            <li><a class="navbar__link" href="../department/developments.html">Developments</a></li>
+            <li><a class="navbar__link" href="http://ic.iaau.edu.kg" target="_blank" rel="noopener">Exchange Programs</a></li>
+            <li><a class="navbar__link" href="../department/prospective-students.html">Prospective Students</a></li>
+            <li><a class="navbar__link" href="../department/alumni.html">Alumni</a></li>
+            <li><a class="navbar__link" href="../department/contact-us.html">Contact Us</a></li>
+            <li><a class="navbar__link" href="../department/info.html">Info</a></li>
+          </ul>
+        </details>
+
+        <details class="menu-drop" open>
+          <summary class="navbar__link">Bachelor Program</summary>
+          <ul class="stack" style="--stack-space:.35rem; margin:.6rem 0 0 0;">
+            <li><a class="navbar__link" href="../program/courses.html">Courses</a></li>
+            <li><a class="navbar__link" href="../program/research.html">Research</a></li>
+            <li><a class="navbar__link" href="../program/degree-guide.html">Degree Guide</a></li>
+            <li><a class="navbar__link" href="../program/recent-diplomas.html">Recent Diplomas</a></li>
+            <li><a class="navbar__link" href="../program/exam_rules.html">Exam Rules</a></li>
+            <li><a class="navbar__link" href="../program/admission.html">Admission</a></li>
+            <li><a class="navbar__link" aria-current="page" href="../program/faq.html">FAQ</a></li>
+          </ul>
+        </details>
+
+        <details class="menu-drop">
+          <summary class="navbar__link">Master Degree</summary>
+          <ul class="stack" style="--stack-space:.35rem; margin:.6rem 0 0 0;">
+            <li><a class="navbar__link" href="../grad/overview.html">Overview</a></li>
+            <li><a class="navbar__link" href="../grad/grad-courses.html">Program</a></li>
+            <li><a class="navbar__link" href="../grad/grad-research.html">Graduate Research</a></li>
+            <li><a class="navbar__link" href="../grad/grad-admission.html">Admission</a></li>
+          </ul>
+        </details>
+
+        <a class="navbar__link" href="../calendar/academic-calendar.html">Calendar</a>
+
+        <a class="navbar__link" href="../faculty/faculty.html">Faculty</a>
+
+        <details class="menu-drop">
+          <summary class="navbar__link">Labs</summary>
+          <ul class="stack" style="--stack-space:.35rem; margin:.6rem 0 0 0;">
+            <li><a class="navbar__link" href="../labs/policy.html" target="_blank" rel="noopener">Policy &amp; Regulations</a></li>
+            <li><a class="navbar__link" href="../labs/software.html">Software</a></li>
+            <li><a class="navbar__link" href="../department/contact-us.html">Contacts</a></li>
+          </ul>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero hero--gradient">
+    <div class="container stack" style="--stack-space:.5rem">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="breadcrumb__sep">/</span>
+        <a href="../program/courses.html">Bachelor Program</a><span class="breadcrumb__sep">/</span>
+        <span>FAQ</span>
+      </nav>
+      <header class="stack" style="--stack-space:.4rem">
+        <h1 class="text-3xl tracking-tight">Frequently Asked Questions</h1>
+        <p class="muted max-w-prose">Quick answers about admission decisions, passing grades, exchange programs, visas, and English test options.</p>
+      </header>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="container stack" style="--stack-space:1rem">
+
+        <!-- Search (optional UI helper) -->
+        <div class="input-group">
+          <input class="input" type="search" placeholder="Search in FAQ…" aria-label="Search FAQ" oninput="filterFaq(this.value)" />
+          <button class="btn btn--ghost" onclick="document.querySelector('.input').value=''; filterFaq('')">Clear</button>
+        </div>
+
+        <!-- FAQ list -->
+        <div id="faq-list" class="stack" style="--stack-space:.75rem">
+
+          <!-- Item -->
+          <details class="card">
+            <summary class="card__body"><strong>What is the passing grade required for admission?</strong></summary>
+            <div class="card__body">
+              <p>Passing (threshold) scores for university admission are set annually by the Ministry of Education and Science of the Kyrgyz Republic. Please check the current year’s official thresholds before applying.</p>
+            </div>
+          </details>
+
+          <!-- Item -->
+          <details class="card">
+            <summary class="card__body"><strong>How long does it take to get an admission decision?</strong></summary>
+            <div class="card__body">
+              <p>It depends on the official procedure, but usually it takes about <strong>two weeks</strong> after submitting your documents.</p>
+            </div>
+          </details>
+
+          <!-- Item -->
+          <details class="card">
+            <summary class="card__body"><strong>What is an exchange program / credit mobility?</strong></summary>
+            <div class="card__body">
+              <p>An exchange (credit mobility) is a period of study or training at a partner university for <strong>one semester</strong> or <strong>up to one academic year</strong>, with credits transferred back to AIU.</p>
+            </div>
+          </details>
+
+          <!-- Item -->
+          <details class="card">
+            <summary class="card__body"><strong>Do international students need a visa to study at AIU?</strong></summary>
+            <div class="card__body">
+              <p>At Manas International Airport (Bishkek), incoming students can obtain a <strong>1-month or 3-month student visa</strong> for living and studying in the Kyrgyz Republic. The International Relations Office (IRO) assists with visa matters.</p>
+            </div>
+          </details>
+
+          <!-- Item -->
+          <details class="card">
+            <summary class="card__body"><strong>Which English tests are accepted for international applicants?</strong></summary>
+            <div class="card__body">
+              <p>AIU conducts its own English test; <strong>TOEFL, IELTS, and Duolingo</strong> scores are also accepted. Program-specific requirements may apply.</p>
+            </div>
+          </details>
+
+          <!-- (Optional) Add-on for Erasmus outgoing eligibility -->
+          <details class="card">
+            <summary class="card__body"><strong>Who can apply for Erasmus+ outgoing mobility?</strong></summary>
+            <div class="card__body">
+              <p>Selection considers eligibility, academic excellence, motivation, and English proficiency. Typical criteria include <strong>GPA 87+</strong>, <strong>English C1+</strong>, and not being in the first or last semester; prior KA171 grantees are not eligible. See current calls for any updates.</p>
+            </div>
+          </details>
+
+        </div>
+
+        <p class="muted text-sm">Sources: official AIU FAQ and IRO pages (content and availability may vary by year). If any policy changes, the most recent announcement on AIU websites prevails.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <p class="muted">© 2015 CS Dept. IAAU</p>
+      <p class="muted">Developed &amp; Designed by Azamat Turgunbaev COM08</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+
+    // tiny client-side filter
+    function filterFaq(q){
+      q = (q||'').toLowerCase();
+      const items = document.querySelectorAll('#faq-list details');
+      items.forEach(d=>{
+        const txt = d.textContent.toLowerCase();
+        d.style.display = txt.includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+  <script src="../js/nav-accordion.js" defer></script>
+</body>
+</html>

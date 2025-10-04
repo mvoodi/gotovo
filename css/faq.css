@@ -1,0 +1,94 @@
+/* ============================
+   FAQ — page styles
+   Depends on: colors.css, text.css, ui.css
+   ============================ */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+
+/* --- Search bar spacing --- */
+.input-group { margin-bottom: 1rem; }
+.input-group .btn { white-space: nowrap; }
+
+/* --- Accordion (details) cards --- */
+#faq-list details {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  background: var(--surface);
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  overflow: hidden; /* keep rounded corners on summary focus ring */
+}
+#faq-list details[open] {
+  border-color: color-mix(in oklab, var(--brand) 45%, var(--border-color));
+  box-shadow:
+    0 10px 20px -12px rgba(18, 50, 120, .18),
+    0 0 0 1px color-mix(in oklab, var(--brand) 15%, transparent);
+}
+
+/* summary row look */
+#faq-list details > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.1rem;
+  position: relative;
+}
+#faq-list details > summary::-webkit-details-marker { display: none; }
+
+/* caret */
+#faq-list details > summary::after{
+  content:"";
+  margin-left: auto;
+  width: 10px; height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: .7;
+  transition: transform .15s ease, opacity .15s ease;
+}
+#faq-list details[open] > summary::after{
+  transform: rotate(-135deg);
+  opacity: 1;
+}
+
+/* hover/focus */
+#faq-list details > summary:hover {
+  background: color-mix(in oklab, var(--brand) 7%, var(--surface));
+}
+#faq-list details > summary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 22%, transparent);
+  border-radius: calc(var(--radius-lg) - 2px);
+}
+
+/* answer body */
+#faq-list .card__body + .card__body { /* the second body is the content */
+  border-top: 1px solid var(--border-color);
+  background: color-mix(in oklab, var(--brand) 4%, var(--surface));
+}
+#faq-list .card__body p { margin: .6rem 0 0; }
+
+/* links inside answers */
+#faq-list .card__body a { border-bottom: 1px solid color-mix(in oklab, var(--brand) 45%, transparent); }
+#faq-list .card__body a:hover { color: var(--color-link-hover); border-color: currentColor; }
+
+/* spacing between items */
+#faq-list > details + details { margin-top: .75rem; }
+
+/* muted source line at the bottom if present */
+.faq-sources { margin-top: .5rem; }
+
+/* mobile tweaks */
+@media (max-width: 640px){
+  #faq-list details > summary { padding: .9rem 1rem; }
+}
+
+/* print: collapse all for compactness */
+@media print {
+  .navbar, .footer, .input-group { display: none !important; }
+  #faq-list details { border: 1px solid #ccc; box-shadow: none; }
+  #faq-list details > summary::after { display: none; }
+  #faq-list details { open: true; } /* most browsers ignore; summaries still clickable in print preview */
+}

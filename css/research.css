@@ -1,0 +1,120 @@
+/* =========================================
+   PAGES/RESEARCH.CSS
+   Research page — contrast-friendly
+   Light surfaces → dark text; Dark sections → light text
+   ========================================= */
+
+/* Общий фон (не белый) и ширина контейнеров */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+.section .container{ width: min(1120px, 100% - 2rem); }
+
+/* ---------- HERO ---------- */
+.hero .lead{ max-width: 65ch; }
+.hero h1{
+  position:relative; padding-bottom:.2rem;
+}
+.hero h1::after{
+  content:""; display:block; width:64px; height:3px; margin-top:.5rem;
+  border-radius:999px; background: linear-gradient(90deg, var(--brand), var(--accent-2));
+}
+
+/* Поддержка якорей для фикса шапки */
+[id]{ scroll-margin-top: 88px; }
+
+/* ---------- ГЛОБАЛЬНО ДЛЯ КАРТОЧЕК НА СТРАНИЦЕ ---------- */
+.card .card__body p{ color: var(--text-primary); }
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 32px -18px rgba(18, 50, 120, .28),
+    0 0 0 1px color-mix(in oklab, var(--brand) 16%, transparent);
+}
+
+/* ---------- AREAS / LABS / PROJECTS СЕТКИ ---------- */
+.grid.grid-3{ gap: 1rem; }
+.grid.grid-cards{ align-items: stretch; }
+
+/* ---------- PROJECTS: подсветка карточки при target секции ---------- */
+#projects:target h2{ color: var(--brand); }
+
+/* ---------- PUBLICATIONS ---------- */
+.pub-list{ --stack-space: .9rem; }
+.pub.card{
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 24px -20px rgba(18,50,120,.25);
+}
+.pub .meta{ margin-bottom:.25rem; }
+.pub .text-lg{ margin:0 0 .35rem; }
+
+/* Кнопки-фильтры выглядят как чипсы */
+#publications .chips button.chip{
+  appearance:none;
+  cursor:pointer;
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: .4rem .7rem;
+  line-height: 1;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+#publications .chips button.chip:hover{
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+  border-color: color-mix(in oklab, var(--brand) 35%, var(--border-color));
+}
+#publications .chips button.chip:disabled{
+  opacity:.65; cursor: default;
+}
+
+/* ---------- OPPORTUNITIES: тёмная карточка (Ethics) ---------- */
+.card.on-dark.section--dark .card__body{ background: transparent; }
+
+/* ---------- АДАПТИВ ---------- */
+@media (max-width: 980px){
+  .grid.grid-3{ grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 680px){
+  .grid.grid-3{ grid-template-columns: 1fr !important; }
+}
+
+/* ---------- ФОКУСЫ И ССЫЛКИ ---------- */
+a, button{ transition: color .15s ease, background .15s ease, border-color .15s ease; }
+a:focus-visible, button:focus-visible{
+  outline:none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent);
+  border-radius:8px;
+}
+
+/* =================================================
+   ЛОКАЛЬНЫЕ ТЁМНЫЕ СЕКЦИИ (если нужно затемнить блок)
+   Добавь class="section--dark" на нужный <section>
+   ================================================= */
+.section--dark{
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+  --color-link: #8bb6ff;
+  --color-link-hover: #a6c4ff;
+
+  background: #0f1628;
+  color: var(--text-primary);
+  border-top: 1px solid #141c2f;
+}
+.section--dark :is(.muted, .eyebrow, .meta, .card p){ color: var(--text-secondary); }
+.section--dark .card{
+  background: var(--surface-elev);
+  border-color: #25304a;
+  box-shadow: 0 12px 24px -20px rgba(0,0,0,.45);
+}
+.section--dark .btn--outline{
+  --btn-fg: var(--color-link);
+  --btn-border: color-mix(in oklab, var(--color-link) 70%, var(--border-color));
+}
+.section--dark .chip{
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+  color: var(--color-link);
+}

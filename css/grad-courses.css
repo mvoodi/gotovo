@@ -1,0 +1,99 @@
+/* =====================================
+   grad-courses.css (Master → Courses)
+   Dark theme polish — uses global tokens
+   ===================================== */
+
+/* базовый тон страницы в тёмной теме */
+.theme-dark,
+:root.theme-dark {
+  background: var(--surface-alt);
+  color: var(--text-primary);
+}
+
+/* секции/контейнеры */
+.section { padding-block: 2.25rem; }
+@media (min-width: 960px){ .section{ padding-block: 3rem; } }
+
+/* карточки */
+.card{
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 12px 22px -12px rgba(0,0,0,.45),
+    0 0 0 1px color-mix(in oklab, var(--brand) 16%, transparent);
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--brand) 38%, var(--border-color));
+  box-shadow:
+    0 16px 28px -14px rgba(0,0,0,.48),
+    0 0 0 1px color-mix(in oklab, var(--brand) 20%, transparent);
+}
+.card__body{ padding: 1.1rem 1.2rem; }
+
+/* заголовки и подзаголовки */
+.card h2{ color: var(--brand); margin-bottom: .25rem; }
+.card p, .card li{ color: var(--text-primary); }
+
+/* списки расписания */
+.card ul{
+  margin: .25rem 0 0;
+  padding-left: 1.1rem;
+}
+.card ul li{
+  position: relative;
+  padding-left: .15rem;
+  line-height: 1.6;
+}
+.card ul li::marker{
+  color: color-mix(in oklab, var(--brand) 85%, var(--text-secondary));
+  font-weight: 700;
+}
+
+/* мини-выделение важного текста */
+strong{ color: var(--text-primary); }
+
+/* разделители внутри карточек (если нужно добавлять блоки) */
+.card .stack > * + * { margin-top: .75rem; }
+
+/* ссылки в тёмной карточке */
+.card a{ border-bottom: 1px solid color-mix(in oklab, var(--brand) 45%, transparent); }
+.card a:hover{ color: var(--color-link-hover); border-color: currentColor; }
+
+/* таблицы (если появятся учебные планы) */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: .5rem;
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+th, td{
+  padding: .7rem .9rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--brand) 12%, var(--border-color));
+  text-align: left;
+}
+thead th{
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+  color: var(--text-primary);
+}
+tbody tr:hover{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface));
+}
+
+/* футер */
+.footer{
+  background: var(--surface);
+  border-top: 1px solid var(--border-color);
+}
+.footer p{ color: var(--text-secondary); }
+
+/* мобильные штрихи */
+@media (max-width: 640px){
+  .card__body{ padding: 1rem; }
+  table{ font-size: .95em; }
+}

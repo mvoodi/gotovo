@@ -1,0 +1,220 @@
+/* ===========================
+   COLORS.CSS — COLOR SYSTEM
+   — Глобальные переменные палитры (синие/голубые технологии + бордовые акценты)
+   — Семантические токены (brand, surface, text, success, warning, danger)
+   — Утилиты классов: .bg-*, .text-*, .border-*, .btn-*
+   — Светлая/тёмная тема и парочка градиентов
+   =========================== */
+
+:root {
+  /* Базовая технологичная сине-голубая гамма (в Oklch ближе к UX-стандартам) */
+  --blue-50:  #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;  /* основной синий */
+  --blue-600: #2563eb;  /* brand */
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+
+  --sky-50:   #f0f9ff;
+  --sky-100:  #e0f2fe;
+  --sky-200:  #bae6fd;
+  --sky-300:  #7dd3fc;
+  --sky-400:  #38bdf8;  /* голубой акцент */
+  --sky-500:  #0ea5e9;
+  --sky-600:  #0284c7;
+  --sky-700:  #0369a1;
+  --sky-800:  #075985;
+  --sky-900:  #0c4a6e;
+
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+
+  /* Бордово-бургундская линия для «богатых» акцентов (как у Барсы) */
+  --burgundy-50:  #f9f0f2;
+  --burgundy-100: #f3e1e6;
+  --burgundy-200: #e7c3cd;
+  --burgundy-300: #d79dac;
+  --burgundy-400: #c37189;
+  --burgundy-500: #9b2141; /* глубокий акцент */
+  --burgundy-600: #7f1934;
+  --burgundy-700: #67142a; /* тёмный бордовый */
+  --burgundy-800: #4e0f20;
+  --burgundy-900: #360a16;
+
+  /* Нейтрали для подложек и текста */
+  --gray-50:#f8fafc; --gray-100:#f1f5f9; --gray-200:#e2e8f0; --gray-300:#cbd5e1;
+  --gray-400:#94a3b8; --gray-500:#64748b; --gray-600:#475569; --gray-700:#334155;
+  --gray-800:#1f2937; --gray-900:#0b1220; /* глубокий технологичный фон */
+
+  /* Подсветки состояний */
+  --green-500:#22c55e; --yellow-500:#f59e0b; --red-500:#ef4444;
+
+  /* Семантические токены темы (light) */
+  --brand: var(--blue-600);
+  --brand-contrast: #ffffff;
+  --accent: var(--sky-400);
+  --accent-2: var(--indigo-600);
+  --accent-burgundy: var(--burgundy-600);
+
+  --surface: #ffffff;
+  --surface-alt: var(--gray-50);
+  --surface-elev: #ffffff;
+
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --border-color: var(--gray-200);
+  --shadow-color: 25 60% 25%; /* HSL proxy for shadow */
+
+  /* ссылки и интеракции по умолчанию (переопределяются в text.css при тёмной теме) */
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+  --color-link: var(--brand);
+  --color-link-hover: var(--blue-700);
+}
+
+/* Тёмная тема через .theme-dark на <html> или <body> */
+.theme-dark {
+  --brand: var(--blue-500);
+  --brand-contrast: #eaf2ff;
+  --accent: var(--sky-300);
+  --accent-2: var(--indigo-500);
+  --accent-burgundy: var(--burgundy-400);
+
+  --surface: #0f1628;          /* мягкий технологичный тёмный */
+  --surface-alt: #0b1220;
+  --surface-elev: #141c2f;
+
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+  --color-link: #6ea8fe;
+  --color-link-hover: #8bb6ff;
+}
+
+/* Авто-тёмная по предпочтениям системы (если не используешь .theme-dark) */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-dark) { /* не мешаем явной теме */
+    --brand: var(--blue-500);
+    --brand-contrast: #eaf2ff;
+    --accent: var(--sky-300);
+    --accent-2: var(--indigo-500);
+    --accent-burgundy: var(--burgundy-400);
+
+    --surface: #0f1628;
+    --surface-alt: #0b1220;
+    --surface-elev: #141c2f;
+
+    --text-primary: #e6eaf2;
+    --text-secondary: #a6b0bf;
+    --border-color: #25304a;
+
+    --color-text: var(--text-primary);
+    --color-text-muted: var(--text-secondary);
+    --color-link: #6ea8fe;
+    --color-link-hover: #8bb6ff;
+  }
+}
+
+/* ===== Утилитарные классы цветов ===== */
+.bg-surface       { background-color: var(--surface); }
+.bg-surface-alt   { background-color: var(--surface-alt); }
+.bg-elev          { background-color: var(--surface-elev); }
+
+.text-primary     { color: var(--text-primary); }
+.text-secondary   { color: var(--text-secondary); }
+.text-brand       { color: var(--brand); }
+.text-accent      { color: var(--accent); }
+.text-burgundy    { color: var(--accent-burgundy); }
+
+.border-default   { border: 1px solid var(--border-color); }
+.border-brand     { border: 1px solid color-mix(in oklab, var(--brand) 60%, transparent); }
+.border-burgundy  { border: 1px solid color-mix(in oklab, var(--accent-burgundy) 60%, transparent); }
+
+/* Тонированные подложки для блоков/бейджей */
+.tint-brand       { background: color-mix(in oklab, var(--brand) 8%, var(--surface)); }
+.tint-accent      { background: color-mix(in oklab, var(--accent) 10%, var(--surface)); }
+.tint-burgundy    { background: color-mix(in oklab, var(--accent-burgundy) 10%, var(--surface)); }
+
+/* Кнопки (минимум) */
+.btn {
+  --btn-bg: var(--brand);
+  --btn-fg: var(--brand-contrast);
+  --btn-border: color-mix(in oklab, var(--brand) 50%, transparent);
+  appearance: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .5rem;
+  padding: .65rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 600;
+  transition: transform .04s ease, filter .15s ease, border-color .15s ease;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn:active { transform: translateY(1px); }
+
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--brand);
+  --btn-border: color-mix(in oklab, var(--brand) 70%, var(--border-color));
+  background: transparent; color: var(--btn-fg);
+}
+
+.btn--burgundy {
+  --btn-bg: var(--accent-burgundy);
+  --btn-fg: #fff4f6;
+  --btn-border: color-mix(in oklab, var(--accent-burgundy) 55%, transparent);
+}
+
+.btn--ghost {
+  --btn-bg: color-mix(in oklab, var(--brand) 8%, transparent);
+  --btn-fg: var(--brand);
+  --btn-border: transparent;
+}
+
+/* Состояния (success/warning/danger) */
+.badge {
+  display: inline-block;
+  padding: .25rem .5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: .85em;
+}
+.badge--success { color:#063; background: color-mix(in oklab, var(--green-500) 20%, transparent); }
+.badge--warning { color:#5a3b00; background: color-mix(in oklab, var(--yellow-500) 22%, transparent); }
+.badge--danger  { color:#5a0010; background: color-mix(in oklab, var(--red-500) 20%, transparent); }
+
+/* Градиенты «технологичные» */
+.bg-gradient-brand {
+  background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 70%, var(--accent)) 0%, var(--accent-2) 100%);
+}
+.bg-gradient-bourg-tech {
+  background: radial-gradient(60% 80% at 20% 10%, color-mix(in oklab, var(--accent-burgundy) 35%, transparent) 0%, transparent 60%),
+              linear-gradient(145deg, var(--blue-900) 0%, var(--blue-700) 50%, var(--brand) 100%);
+}
+
+/* Тени с холодным «неоновым» оттенком */
+.shadow-brand {
+  box-shadow:
+    0 10px 20px -10px rgba(18, 50, 120, .35),
+    0 0 0 1px color-mix(in oklab, var(--brand) 20%, transparent);
+}
+.shadow-burgundy {
+  box-shadow:
+    0 10px 20px -10px rgba(120, 18, 40, .35),
+    0 0 0 1px color-mix(in oklab, var(--accent-burgundy) 25%, transparent);
+}
+
+/* Доп. палитра-утилиты (если нужно точечно) */
+.text-blue-600 { color: var(--blue-600); } .bg-blue-600 { background: var(--blue-600); color:#fff; }
+.text-sky-400  { color: var(--sky-400); }  .bg-sky-400  { background: var(--sky-400); color:#06233a; }
+.text-indigo-600{ color: var(--indigo-600);} .bg-indigo-600{ background: var(--indigo-600); color:#eef; }
+.text-burgundy-600 { color: var(--burgundy-600); } .bg-burgundy-600 { background: var(--burgundy-600); color:#fff2f5; }

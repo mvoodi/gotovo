@@ -1,0 +1,164 @@
+/* =========================================
+   PAGES / RECENT-DIPLOMAS.CSS
+   Контрастно, техно-синие оттенки, без белого фона
+   Светлые поверхности → тёмный текст; Тёмные блоки → светлый текст
+   ========================================= */
+
+/* Общий фон страницы чуть затемнённый (не белый) */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt, #0f1424));
+}
+
+/* Контент и заголовки */
+#wrap-content{
+  padding-top: 1rem;
+}
+#content h1, #content h2{
+  color: var(--text-primary, #0f1a3a);
+}
+
+/* ---------- Таблица дипломов ---------- */
+#content > table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface, #11192e);
+  border: 1px solid var(--border-color, #223052);
+  border-radius: 14px;
+  overflow: hidden;
+  /* тень лёгкая */
+  box-shadow: 0 10px 24px -16px rgba(10,25,60,.55);
+  color: var(--text-primary-ondark, #e6ecff); /* по умолчанию тёмная секция */
+}
+
+/* Липкая шапка: у тебя в thead стоят <td>, это учли */
+#content table thead td,
+#content table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--brand, #2f6fff) 20%, #0f1628) 0%,
+    color-mix(in oklab, var(--brand, #2f6fff) 10%, #0f1628) 100%
+  );
+  color: var(--text-primary-ondark, #eef3ff);
+  text-align: left;
+  font-weight: 600;
+  padding: .85rem 1rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--brand) 28%, var(--border-color, #223052));
+  backdrop-filter: saturate(120%) blur(4px);
+}
+
+/* Ячейки */
+#content table td, 
+#content table th{
+  padding: .7rem 1rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color, #223052);
+  color: inherit;
+}
+
+/* Зебра и hover */
+#content table tr:nth-child(odd) td{
+  background: color-mix(in oklab, var(--brand, #2f6fff) 6%, var(--surface, #11192e));
+}
+#content table tr:hover td{
+  background: color-mix(in oklab, var(--brand, #2f6fff) 14%, var(--surface, #11192e));
+}
+
+/* Первая строка данных с классом .other-table-elements — выровняем под общий стиль */
+#content table tr.other-table-elements td{
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+  font-weight: 500;
+}
+
+/* Колонки: N узкая, Title растягивается, Author умеренно узкая */
+#content table thead td:first-child,
+#content table tbody td:first-child{
+  width: 64px;
+  text-align: right;
+  color: var(--text-secondary-ondark, #b9c7e6);
+}
+#content table thead td:nth-child(2),
+#content table tbody td:nth-child(2){
+  width: auto;
+}
+#content table thead td:last-child,
+#content table tbody td:last-child{
+  width: 28ch;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Ссылки внутри таблицы (если будут) */
+#content table a{
+  color: var(--link-on-dark, #a6c4ff);
+  text-decoration: underline;
+}
+#content table a:hover{
+  color: var(--link-on-dark-hover, #c7d8ff);
+  text-decoration: none;
+}
+
+/* Скролл по X на маленьких экранах + мягкие тени по краям */
+@media (max-width: 920px){
+  #content{ overflow-x: auto; }
+  #content > table{
+    min-width: 720px;
+    /* маска-тени по краям, когда скроллим */
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+}
+
+/* Светлая тема таблицы (на случай если захочешь белый/светлый блок)
+   Просто добавь класс .table--light на table */
+#content table.table--light{
+  background: var(--surface-light, #f6f8ff);
+  color: var(--text-primary, #0e1a3a);
+  border-color: var(--border-color-light, #cbd7f0);
+  box-shadow: 0 10px 24px -16px rgba(20,40,90,.22);
+}
+#content table.table--light thead td,
+#content table.table--light thead th{
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--brand, #2f6fff) 18%, #ffffff) 0%,
+    color-mix(in oklab, var(--brand, #2f6fff) 10%, #ffffff) 100%
+  );
+  color: var(--text-primary, #0e1a3a);
+  border-bottom-color: color-mix(in oklab, var(--brand) 30%, #cbd7f0);
+}
+#content table.table--light tr:nth-child(odd) td{
+  background: color-mix(in oklab, var(--brand) 5%, #ffffff);
+}
+#content table.table--light tr:hover td{
+  background: color-mix(in oklab, var(--brand) 12%, #ffffff);
+}
+#content table.table--light td:first-child{
+  color: var(--text-secondary, #384f7a);
+}
+#content table.table--light a{
+  color: var(--brand, #2f6fff);
+}
+#content table.table--light a:hover{
+  color: color-mix(in oklab, var(--brand) 80%, #000);
+}
+
+/* Маленькие улучшения типографики */
+#content table td{
+  line-height: 1.35;
+}
+#content table td:nth-child(2){
+  word-break: break-word;
+}
+
+/* Закругления только сверху у шапки, снизу у последней строки */
+#content table thead td:first-child,
+#content table thead th:first-child{ border-top-left-radius: 14px; }
+#content table thead td:last-child,
+#content table thead th:last-child{ border-top-right-radius: 14px; }
+#content table tr:last-child td:first-child{ border-bottom-left-radius: 14px; }
+#content table tr:last-child td:last-child{ border-bottom-right-radius: 14px; }

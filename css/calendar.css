@@ -1,0 +1,105 @@
+/* ============================
+   calendar.css — Academic Calendar (dark)
+   Depends on: colors.css, text.css, ui.css
+   ============================ */
+
+/* base */
+.theme-dark, :root.theme-dark {
+  background: var(--surface-alt);
+  color: var(--text-primary);
+}
+
+/* hero */
+.hero.hero--gradient{
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+}
+.hero h1, .hero p{ color: var(--text-primary); }
+
+/* cards */
+.card{
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 12px 22px -12px rgba(0,0,0,.45),
+    0 0 0 1px color-mix(in oklab, var(--brand) 16%, transparent);
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--brand) 38%, var(--border-color));
+  box-shadow:
+    0 16px 28px -14px rgba(0,0,0,.48),
+    0 0 0 1px color-mix(in oklab, var(--brand) 22%, transparent);
+}
+.card__body{ padding: 1.1rem 1.2rem; }
+.card h2{ color: var(--brand); margin-bottom: .35rem; }
+
+/* tables */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: .4rem;
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-size: .98em;
+}
+th, td{
+  padding: .7rem .9rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--brand) 12%, var(--border-color));
+  text-align: left;
+  vertical-align: top;
+}
+thead th{
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+  color: var(--text-primary);
+}
+tbody tr:hover{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface));
+}
+
+/* badges & legend chips */
+.badge{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.28rem .6rem; border-radius:999px;
+  font-weight:700; font-size:.85em;
+  background: color-mix(in oklab, var(--brand) 12%, var(--surface));
+  color: var(--brand);
+  border:1px solid color-mix(in oklab, var(--brand) 45%, transparent);
+}
+
+.chips{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.25rem .55rem; border-radius:999px;
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+  color: var(--brand); font-weight:600; font-size:.85em;
+  border:1px solid color-mix(in oklab, var(--brand) 35%, transparent);
+}
+.dot{ width:.6rem; height:.6rem; border-radius:50%; display:inline-block; }
+
+/* color mapping (approx from legend) */
+.dot--uni{ background: var(--blue-700); }
+.dot--orient{ background: var(--sky-400); }
+.dot--mid{ background: #34d399; }      /* green-ish */
+.dot--final{ background: #60a5fa; }    /* blue */
+.dot--make{ background: #06b6d4; }     /* cyan */
+.dot--state{ background: #8b5cf6; }    /* indigo */
+.dot--nat{ background: #f59e0b; }      /* amber */
+.dot--summer{ background: #22c55e; }   /* green */
+
+/* footer */
+.footer{
+  background: var(--surface);
+  border-top: 1px solid var(--border-color);
+}
+.footer p{ color: var(--text-secondary); }
+
+/* responsive */
+@media (max-width: 720px){
+  .card__body{ padding: 1rem; }
+  table{ font-size: .95em; }
+}

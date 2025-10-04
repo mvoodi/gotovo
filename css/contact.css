@@ -1,0 +1,133 @@
+/* =========================================
+   PAGES/CONTACT.CSS
+   Contact Us page — contrast-friendly
+   Light surfaces → dark text; Dark sections → light text
+   ========================================= */
+
+/* Общий фон страницы (слегка затемнённый) */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+
+/* Контейнер шире на десктопе */
+.section .container{ width: min(1120px, 100% - 2rem); }
+
+/* ---------- HERO ---------- */
+.hero .lead{ max-width: 65ch; }
+.hero h1{
+  position:relative; padding-bottom:.2rem;
+}
+.hero h1::after{
+  content:""; display:block; width:64px; height:3px; margin-top:.5rem;
+  border-radius:999px; background: linear-gradient(90deg, var(--brand), var(--accent-2));
+}
+
+/* ---------- ЛЕЙАУТ ШАПКИ КОНТАКТОВ ---------- */
+.contact-layout{
+  display:grid; gap: 1rem;
+  grid-template-columns: .9fr 1.1fr;
+  align-items:start;
+}
+@media (max-width: 920px){
+  .contact-layout{ grid-template-columns: 1fr; }
+}
+
+.contact-figure{
+  margin:0; border-radius: var(--radius-lg);
+  overflow:hidden; background: var(--surface-alt);
+  box-shadow:
+    0 18px 30px -18px rgba(18,50,120,.28),
+    0 0 0 1px color-mix(in oklab, var(--brand) 10%, transparent);
+}
+.contact-figure img{
+  display:block; width:100%; height:100%;
+  aspect-ratio: 4 / 3; object-fit: cover;
+}
+
+/* ---------- КАРТОЧКА КОНТАКТОВ ---------- */
+.card .meta{
+  display:flex; align-items:center; gap:.5rem; color: var(--text-primary);
+}
+.card .meta span:first-child{ opacity:.85; }
+
+/* ---------- ССЫЛОЧНЫЙ СПИСОК ---------- */
+.link-list{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap:.4rem;
+}
+.link-list a{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.25rem .35rem; border-radius:8px;
+}
+.link-list a:hover{
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+}
+
+/* ---------- ФОРМА ---------- */
+.form{
+  display:grid; grid-template-columns: 1fr 1fr; gap:.75rem 1rem;
+}
+.form__row{ display:flex; flex-direction:column; gap:.35rem; }
+.form__row--full{ grid-column: 1 / -1; }
+
+label{ font-weight:600; color: var(--text-primary); }
+
+.input{
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: .6rem .7rem;
+  min-height: 44px;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.input::placeholder{ color: color-mix(in oklab, var(--text-secondary) 85%, #fff 15%); }
+.input:focus{
+  outline:none;
+  border-color: color-mix(in oklab, var(--brand) 55%, var(--border-color));
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 22%, transparent);
+}
+textarea.input{ resize: vertical; }
+
+/* Валидация (негативное состояние) */
+.input:user-invalid,
+.input:invalid{
+  border-color: color-mix(in oklab, crimson 50%, var(--border-color));
+  box-shadow: 0 0 0 3px color-mix(in oklab, crimson 18%, transparent);
+}
+
+/* Кнопки формы */
+.form__actions{
+  display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;
+}
+.small{ font-size:.9rem; }
+
+/* ---------- CTA/ТЁМНЫЙ БЛОК (в разметке уже .section--dark) ---------- */
+.section--dark{
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+  --color-link: #8bb6ff;
+  --color-link-hover: #a6c4ff;
+
+  background: #0f1628;
+  color: var(--text-primary);
+  border: 1px solid #141c2f;
+  border-radius: var(--radius-lg);
+}
+.section--dark .card__body{ background: transparent; }
+.section--dark :is(p, .muted, .meta){ color: var(--text-secondary); }
+.section--dark .chip{
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+  color: var(--color-link);
+}
+
+/* ---------- ФОКУСЫ И ССЫЛКИ ---------- */
+a{ transition: color .15s ease, background .15s ease, border-color .15s ease; }
+a:focus-visible{ outline:none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent); border-radius:8px; }
+
+/* ---------- АДАПТИВ СЕТКИ ФОРМЫ ---------- */
+@media (max-width: 720px){
+  .form{ grid-template-columns: 1fr; }
+}

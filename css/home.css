@@ -1,0 +1,85 @@
+/* Exam Rules — page-level styles
+   ориентируемся на существующие токены/классы,
+   цвета берём из контекста (тёмный текст на светлом).
+*/
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+
+/* Тихий хиро без лишней высоты */
+.hero--subtle {
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,0));
+  padding-block: 1.25rem;
+}
+.hero--subtle .hero__body { padding-block: .25rem; }
+
+/* Нумерованный список правил с кастомным маркером */
+.rules-list {
+  list-style: none;
+  counter-reset: rule;
+  padding-left: 0;
+  margin: 0;
+}
+.rules-list li {
+  counter-increment: rule;
+  position: relative;
+  padding-left: 3.25rem;
+  margin: .75rem 0;
+  line-height: 1.6;
+  color: var(--text-900, #1a2234); /* тёмный текст на светлом фоне */
+}
+.rules-list li::before {
+  content: counter(rule);
+  position: absolute;
+  left: .25rem;
+  top: .1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* мягкий контур с опорой на текущий цвет текста */
+  color: inherit;
+  border: 2px solid color-mix(in oklab, currentColor 30%, transparent);
+  background: color-mix(in oklab, currentColor 6%, white);
+  font-weight: 700;
+  font-size: .95rem;
+}
+.rules-list li + li {
+  border-top: 1px dashed color-mix(in oklab, currentColor 18%, transparent);
+  padding-top: .85rem;
+  margin-top: .85rem;
+}
+
+/* Предупреждение: на тёмном фоне — светлый текст */
+.notice {
+  margin-top: 1rem;
+  border-radius: .75rem;
+  padding: .9rem 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+.notice--warning {
+  /* тёмный фон + светлый текст (контраст  AAA ) */
+  background: var(--surface-warning-900, #233357);
+  color: var(--on-warning, #fff);
+  border: 1px solid color-mix(in oklab, #4b6bb3 60%, transparent);
+  text-transform: uppercase;
+  letter-spacing: .2px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+}
+
+/* Карточка в контенте — чуть плотнее */
+.card .card__body {
+  padding: 1.25rem 1.25rem;
+}
+
+/* Мелкая адаптация */
+@media (max-width: 768px) {
+  .rules-list li { padding-left: 2.6rem; }
+  .rules-list li::before {
+    width: 1.8rem; height: 1.8rem; font-size: .85rem;
+  }
+}

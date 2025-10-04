@@ -1,0 +1,158 @@
+/* =========================================
+   PAGES/DEVELOPMENTS.CSS
+   — Контрастно-дружелюбные стили под Developments
+   — Светлые поверхности → тёмный текст
+   — Тёмные блоки (.section--dark) → светлый текст (локальные токены)
+   ========================================= */
+
+/* ===== Фон страницы (не чистый белый) ===== */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+
+/* ===== Hero ===== */
+.hero .lead{ max-width: 65ch; }
+.hero .breadcrumb{ margin-bottom:.25rem; }
+.hero .meta{ color: var(--text-secondary); }
+
+/* ===== Фильтры / Поиск ===== */
+.dev-filters .input{ background: var(--surface); }
+.dev-filters .chips .chip{ user-select:none; cursor:pointer; }
+.dev-filters .chip.is-active{
+  background: color-mix(in oklab, var(--brand) 18%, var(--surface));
+  border-color: color-mix(in oklab, var(--brand) 60%, transparent);
+  color: var(--brand);
+}
+
+/* ===== Сетка проектов ===== */
+.project .card__body p{ color: var(--text-primary); }  /* темнее на светлом фоне */
+.project .eyebrow{ color: var(--text-secondary); }
+.project .dev-actions{ display:flex; gap:.5rem; }
+
+/* ===== Goals & Objectives ===== */
+.goals-grid{
+  display:grid; gap:1rem;
+  grid-template-columns: 1fr;
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface)); /* светлая подложка */
+  border:1px solid color-mix(in oklab, var(--brand) 28%, var(--border-color));
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+.goals{
+  margin:0; padding:0; list-style:none;
+  display:grid; gap:.6rem;
+}
+.goals li{
+  position:relative; padding-left:1.3rem;
+  color: var(--text-primary); /* тёмный текст на светлом */
+}
+.goals li::before{
+  content:""; position:absolute; left:0; top:.55em;
+  width:.55rem; height:.55rem; border-radius:2px;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 25%, transparent);
+}
+.goals li:nth-child(3n)::before{
+  background: var(--accent-burgundy);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent-burgundy) 28%, transparent);
+}
+
+/* ===== Incubator ===== */
+.incubator{
+  display:grid; gap:1rem;
+  grid-template-columns: 1.2fr .8fr;
+  align-items:start;
+  background: var(--surface);            /* светлый контейнер → тёмный текст */
+  border:1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+@media (max-width: 880px){
+  .incubator{ grid-template-columns: 1fr; }
+}
+.incubator__list{
+  margin:0; padding:0; list-style:none;
+  display:grid; gap:.5rem;
+}
+.incubator__list li{ position:relative; padding-left:1.2rem; }
+.incubator__list li::before{
+  content:""; position:absolute; left:0; top:.55em;
+  width:.45rem; height:.45rem; border-radius:2px; background: var(--accent);
+}
+.incubator__cta{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface)); /* чуть темнее, но ещё светлый */
+  border:1px solid color-mix(in oklab, var(--brand) 28%, var(--border-color));
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+
+/* ===== CTA ===== */
+.cta{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  background: color-mix(in oklab, var(--brand) 8%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--brand) 32%, var(--border-color));
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+.cta__actions{ display:flex; gap:.5rem; flex-wrap:wrap; }
+@media (max-width: 780px){
+  .cta{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ===== Контейнеры чуточку шире ===== */
+.section .container{ width: min(1120px, 100% - 2rem); }
+
+/* =================================================
+   ТЁМНЫЕ СЕКЦИИ (локальная тема без глобального .theme-dark)
+   Используй класс .section--dark на <section> или <div>
+   ================================================= */
+.section--dark{
+  /* локально переопределяем токены, компоненты сразу подхватят */
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+  --color-link: #8bb6ff;
+  --color-link-hover: #a6c4ff;
+
+  background: #0f1628;  /* технологичный тёмный фон */
+  color: var(--text-primary);
+  border-top: 1px solid #141c2f;  /* опционально отделить секцию */
+}
+
+/* Внутри тёмной секции поверхности делаем темнее */
+.section--dark .goals-grid,
+.section--dark .incubator,
+.section--dark .cta{
+  background: var(--surface-elev);
+  border-color: #25304a;
+}
+
+/* Текст в подблоках — светлый */
+.section--dark .muted,
+.section--dark .eyebrow,
+.section--dark .meta,
+.section--dark .card__body p{
+  color: var(--text-secondary);
+}
+
+/* Чипсы/кнопки на тёмном — видимые */
+.section--dark .chip{
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+  color: var(--color-link);
+}
+.section--dark .btn--outline{
+  --btn-fg: var(--color-link);
+  --btn-border: color-mix(in oklab, var(--color-link) 70%, var(--border-color));
+}
+
+/* Карточки на тёмном: границы темнее, тени мягче */
+.section--dark .card{
+  border-color: #25304a;
+  background: var(--surface-elev);
+}
+
+/* Для очень тёмных подложек можно использовать модификатор .on-dark */
+.on-dark{ color: var(--text-primary); }
+.on-dark .muted{ color: var(--text-secondary); }
+.on-dark a{ color: var(--color-link); }

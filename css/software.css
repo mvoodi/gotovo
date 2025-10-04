@@ -1,0 +1,58 @@
+/* Dark Software Page */
+.theme-dark {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+/* table layout */
+.table-wrap { overflow-x:auto; }
+.table-software {
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid var(--border-color);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  font-size:.97rem;
+}
+
+.table-software th,
+.table-software td {
+  padding:.75rem 1rem;
+  text-align:left;
+  border-bottom:1px solid color-mix(in oklab, var(--brand) 10%, var(--border-color));
+}
+
+.table-software thead th {
+  background: color-mix(in oklab, var(--brand) 12%, var(--surface));
+  color: var(--text-primary);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+
+.table-software tbody tr:hover {
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface));
+  transition: background .2s ease;
+}
+
+.table-software a {
+  color: var(--brand);
+  border-bottom:1px solid color-mix(in oklab, var(--brand) 40%, transparent);
+}
+.table-software a:hover {
+  border-color: currentColor;
+  color: var(--color-link-hover);
+}
+
+/* hero meta */
+.hero--gradient {
+  background: var(--surface-alt);
+  border-bottom:1px solid var(--border-color);
+}
+.hero p.muted { color: var(--text-secondary); }
+
+/* card */
+.card__body { padding:1.4rem 1.6rem; }
+
+.footer { background: var(--surface); border-top:1px solid var(--border-color); }
+.footer p { color: var(--text-secondary); }

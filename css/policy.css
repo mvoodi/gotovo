@@ -1,0 +1,50 @@
+/* Lab Rules — Dark page polish
+   depends on colors.css, text.css, ui.css */
+
+.theme-dark {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+/* readable long-form */
+.prose {
+  max-width: 75ch;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  color: var(--brand);
+  font-size: clamp(1.2rem, 1rem + .6vw, 1.5rem);
+}
+.prose h3 { margin-top: 1.4rem; color: var(--text-primary); }
+
+.prose p { margin: .85rem 0; }
+.prose ul, .prose ol { margin: .75rem 0 .9rem 1.25rem; }
+.prose li + li { margin-top: .35rem; }
+.prose ol { list-style: decimal; }
+.prose ul { list-style: disc; }
+
+.list-danger {
+  list-style: disc;
+  padding: .9rem 1.1rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--red-500) 16%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--red-500) 30%, transparent);
+}
+
+/* card breathing room */
+.card { margin-top: 1rem; }
+.card__body { padding: 1.2rem 1.3rem 1.4rem; }
+
+/* meta under hero */
+.meta {
+  display:flex; gap:.8rem; flex-wrap:wrap; align-items:center;
+  color: var(--text-secondary);
+}
+.meta .btn { height: 36px; }
+
+/* links in body */
+.prose a { border-bottom: 1px solid color-mix(in oklab, var(--brand) 55%, transparent); }
+.prose a:hover { color: var(--color-link-hover); border-color: currentColor; }

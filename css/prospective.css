@@ -1,0 +1,134 @@
+/* =========================================
+   PAGES/PROSPECTIVE.CSS
+   — Prospective Students page (contrast-friendly)
+   — Light surfaces → dark text; Dark sections → light text
+   ========================================= */
+
+/* Общий фон страницы (не белый) */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+
+/* Чуть шире контейнеры на больших экранах */
+.section .container{ width: min(1120px, 100% - 2rem); }
+
+/* ---------- HERO ---------- */
+.hero.hero--gradient{ position: relative; }
+.hero.hero--gradient::after{
+  content:"";
+  position:absolute; inset: 0; pointer-events:none;
+  background:
+    radial-gradient(60% 40% at 15% 0%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 60%),
+    radial-gradient(35% 35% at 100% 0%, color-mix(in oklab, var(--accent-burgundy) 10%, transparent), transparent 70%);
+  opacity:.9;
+}
+.hero h1{
+  position: relative; padding-bottom:.2rem;
+}
+.hero h1::after{
+  content:""; display:block; width:64px; height:3px; margin-top:.5rem; border-radius:999px;
+  background: linear-gradient(90deg, var(--brand), var(--accent-2));
+}
+.hero .lead{ max-width: 65ch; }
+
+/* Якорные chips в hero */
+.hero .chips a{ border-bottom:none; }
+
+/* ---------- PROGRAMS / TRACKS ---------- */
+#tracks .card .eyebrow{ color: var(--text-secondary); }
+#tracks .card p{ color: var(--text-primary); }
+
+/* ---------- REQUIREMENTS & LEARNING OUTCOMES ---------- */
+#requirements .card ul{
+  list-style:none; margin:0; padding:0; display:grid; gap:.55rem;
+}
+#requirements .card ul li{
+  position:relative; padding-left:1.25rem; color: var(--text-primary);
+}
+#requirements .card ul li::before{
+  content:""; position:absolute; left:0; top:.6em;
+  width:.5rem; height:.5rem; border-radius:2px; background: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 25%, transparent);
+}
+#requirements .card ul li:nth-child(3n)::before{
+  background: var(--accent-burgundy);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent-burgundy) 28%, transparent);
+}
+
+/* ---------- HOW TO APPLY (Steps) ---------- */
+#apply .grid.grid-3{ align-items: stretch; }
+#apply .card{ position:relative; }
+#apply .card .eyebrow{ color: var(--brand); font-weight:700; letter-spacing:.04em; }
+
+/* ---------- SCHOLARSHIPS / AID ---------- */
+#scholarships .card p{ color: var(--text-primary); }
+
+/* ---------- FAQ (details/summary) ---------- */
+#faq details{
+  border:1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding:.7rem .9rem;
+}
+#faq details + details{ margin-top:.6rem; }
+
+#faq summary{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:center; gap:.6rem;
+}
+#faq summary::-webkit-details-marker{ display:none; }
+#faq summary::before{
+  content:""; flex:0 0 10px; height:10px;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform: rotate(45deg); opacity:.7; transition: transform .15s ease, opacity .15s ease;
+}
+#faq details[open] summary::before{ transform: rotate(-135deg); opacity:1; }
+#faq summary:focus-visible{ outline:none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent); border-radius:8px; }
+#faq details .muted{ color: var(--text-secondary); }
+
+/* ---------- CTA ---------- */
+.cta{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  background: color-mix(in oklab, var(--brand) 8%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--brand) 32%, var(--border-color));
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+.cta__actions{ display:flex; gap:.5rem; flex-wrap:wrap; }
+@media (max-width: 780px){
+  .cta{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ---------- Фокусы и ссылки ---------- */
+a{ transition: color .15s ease, background .15s ease, border-color .15s ease; }
+a:focus-visible{ outline:none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent); border-radius:8px; }
+
+/* =================================================
+   ЛОКАЛЬНЫЕ ТЁМНЫЕ СЕКЦИИ (если понадобится)
+   Добавь class="section--dark" на нужный <section>
+   ================================================= */
+.section--dark{
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+  --color-link: #8bb6ff;
+  --color-link-hover: #a6c4ff;
+
+  background: #0f1628;
+  color: var(--text-primary);
+  border-top: 1px solid #141c2f;
+}
+.section--dark .card{
+  background: var(--surface-elev);
+  border-color: #25304a;
+}
+.section--dark :is(.muted, .eyebrow, .meta, .card p){ color: var(--text-secondary); }
+.section--dark .chip{
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+  color: var(--color-link);
+}
+.section--dark .btn--outline{
+  --btn-fg: var(--color-link);
+  --btn-border: color-mix(in oklab, var(--color-link) 70%, var(--border-color));
+}

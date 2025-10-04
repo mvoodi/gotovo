@@ -1,0 +1,141 @@
+/* =========================================
+   PAGES/THESIS.CSS
+   Thesis Guide — contrast-friendly
+   Light surfaces → dark text; Dark sections → light text
+   ========================================= */
+
+/* Общий фон (не белый) и ширина контейнеров */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+.section .container{ width: min(1120px, 100% - 2rem); }
+
+/* ---------- HERO ---------- */
+.hero .lead{ max-width: 65ch; }
+.hero h1{
+  position:relative; padding-bottom:.2rem;
+}
+.hero h1::after{
+  content:""; display:block; width:64px; height:3px; margin-top:.5rem;
+  border-radius:999px; background: linear-gradient(90deg, var(--brand), var(--accent-2));
+}
+
+/* Поддержка якорей, чтобы не прятались под шапкой */
+[id]{ scroll-margin-top: 88px; }
+
+/* ---------- TOC (Table of Contents) ---------- */
+.toc{
+  margin:0; padding:0; list-style:none;
+  display:grid; gap:.5rem;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+}
+.toc li a{
+  display:block; padding:.55rem .7rem; border-radius:12px;
+  background: var(--surface);
+  border:1px solid var(--border-color);
+  color: var(--text-primary);
+  line-height:1.35;
+  transition: background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.toc li a:hover{
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface));
+  border-color: color-mix(in oklab, var(--brand) 35%, var(--border-color));
+}
+.toc li a:focus-visible{
+  outline:none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent);
+}
+
+/* Мобильный столбец */
+@media (max-width: 760px){
+  .toc{ grid-template-columns: 1fr; }
+}
+
+/* ---------- КАЛЕНДАРЬ (таблица) ---------- */
+.table-wrap{
+  overflow:auto;
+  max-height: 460px;
+  border-radius: var(--radius-lg);
+  border:1px solid var(--border-color);
+  background: var(--surface);
+  box-shadow: 0 12px 24px -20px rgba(18,50,120,.25);
+}
+.table{
+  width:100%; border-collapse: separate; border-spacing:0;
+  min-width: 560px;
+}
+.table thead th{
+  position: sticky; top: 0; z-index: 1;
+  background: color-mix(in oklab, var(--brand) 8%, var(--surface));
+  color: var(--text-primary);
+  text-align:left; padding:.7rem .8rem;
+  border-bottom:1px solid color-mix(in oklab, var(--brand) 28%, var(--border-color));
+}
+.table tbody td{
+  padding:.65rem .8rem; color: var(--text-primary);
+  border-bottom:1px solid var(--border-color);
+  vertical-align: top;
+}
+.table tbody tr:nth-child(odd){
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface));
+}
+.table tbody tr:hover{
+  background: color-mix(in oklab, var(--brand) 12%, var(--surface));
+}
+.table a{ text-decoration: underline; }
+
+/* Маленькие пометки внутри ячеек (например [soft-copy]) */
+.table .muted{ color: var(--text-secondary); }
+
+/* На совсем маленьких экранах уменьшим высоту окна и шрифт таблицы */
+@media (max-width: 560px){
+  .table-wrap{ max-height: 380px; }
+  .table{ font-size: .95rem; }
+}
+
+/* ---------- ВСПОМОГАТЕЛЬНОЕ ---------- */
+.card .card__body p{ color: var(--text-primary); }
+.back-top{
+  text-align:right; margin-top:.75rem;
+}
+.back-top a{
+  font-size:.92rem; opacity:.9; border-bottom:1px dashed currentColor;
+}
+.back-top a:hover{ opacity:1; border-bottom-color: transparent; }
+
+/* ---------- Фокусы и ссылки ---------- */
+a{ transition: color .15s ease, background .15s ease, border-color .15s ease; }
+a:focus-visible{ outline:none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent); border-radius:8px; }
+
+/* =================================================
+   ЛОКАЛЬНАЯ ТЁМНАЯ СЕКЦИЯ (если решишь затемнить блок)
+   Добавь class="section--dark" на <section>
+   ================================================= */
+.section--dark{
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+  --color-link: #8bb6ff;
+  --color-link-hover: #a6c4ff;
+
+  background: #0f1628;
+  color: var(--text-primary);
+  border-top: 1px solid #141c2f;
+}
+.section--dark .card{
+  background: var(--surface-elev);
+  border-color: #25304a;
+  box-shadow: 0 12px 24px -20px rgba(0,0,0,.45);
+}
+.section--dark :is(.muted, .eyebrow, .meta, .card p){ color: var(--text-secondary); }
+.section--dark .table-wrap{
+  background: var(--surface-elev);
+  border-color: #25304a;
+}
+.section--dark .table thead th{
+  background: color-mix(in oklab, var(--brand) 16%, var(--surface-elev));
+  border-bottom-color: color-mix(in oklab, var(--brand) 36%, #25304a);
+}
+.section--dark .table tbody tr:nth-child(odd){
+  background: color-mix(in oklab, var(--brand) 10%, var(--surface-elev));
+}

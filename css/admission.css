@@ -1,0 +1,80 @@
+/* ============================
+   Admission — page styles
+   Depends on: colors.css, text.css, ui.css
+   Scope: only light touch-ups for this page
+   ============================ */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+/* Layout rhythm inside cards */
+.card .stack > * + * { margin-top: .75rem; }
+
+/* Section headings inside cards */
+.card h2, .card h3, .card h4 {
+  margin-bottom: .35rem;
+}
+
+/* --- Registration Dates & Documents --- */
+.card ul li,
+.card ol li {
+  padding-left: .4rem;
+}
+
+.card ul li::marker { color: color-mix(in oklab, var(--brand) 80%, var(--text-secondary)); }
+.card ol { list-style: decimal; }
+.card ol li::marker { font-weight: 700; color: var(--brand); }
+
+/* Compact helper for inline notes */
+.text-sm { font-size: var(--text-sm); }
+.mono { font-family: var(--font-mono); }
+
+/* Subtle info panel already uses .tint-brand + .round-lg in HTML.
+   Add a faint left border for emphasis on this page. */
+.tint-brand.round-lg {
+  border-left: 4px solid color-mix(in oklab, var(--brand) 55%, transparent);
+}
+
+/* --- Table polish --- */
+table { border-radius: var(--radius-md); overflow: hidden; }
+thead th { background: color-mix(in oklab, var(--brand) 8%, var(--surface)); }
+tbody tr:hover {
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface));
+}
+th:first-child, td:first-child { width: 40%; }
+th, td { vertical-align: middle; }
+
+/* Fix tiny cells in mobile */
+@media (max-width: 640px) {
+  th:first-child, td:first-child { width: auto; }
+  table { font-size: .95em; }
+}
+
+/* --- Breadcrumb spacing in hero --- */
+.hero .breadcrumb { margin-bottom: .25rem; }
+
+/* --- Chips/list spacing inside stacked lists --- */
+.stack ul { margin: 0; }
+.stack ul ul {
+  margin-top: .35rem;
+  padding-left: 1.1rem;
+}
+
+/* --- Links inside cards: remove underline border for denser look --- */
+.card a { border-bottom: none; }
+.card a:hover { text-decoration: underline; }
+
+/* --- Emphasis helpers just for this page (optional) --- */
+.note {
+  padding: .75rem .9rem;
+  border: 1px dashed color-mix(in oklab, var(--brand) 40%, var(--border-color));
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface));
+}
+
+/* --- Print: simplify colors and spacing --- */
+@media print {
+  .navbar, .footer { display: none !important; }
+  .hero { padding: 0 0 .75rem 0; border: none; background: transparent; }
+  .card { border: 1px solid #ccc; box-shadow: none; }
+  a { color: inherit; text-decoration: underline; border: none; }
+}

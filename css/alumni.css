@@ -1,0 +1,104 @@
+/* =========================================
+   PAGES/ALUMNI.CSS
+   Alumni page (Announcements, News, Join, Resources, Contact)
+   — Light surfaces → dark text; Dark sections → light text
+   ========================================= */
+
+/* Общий фон (не белый), ширина контейнеров */
+body{
+  background: color-mix(in oklab, var(--brand) 6%, var(--surface-alt));
+}
+.section .container{ width: min(1120px, 100% - 2rem); }
+
+/* ---------- HERO ---------- */
+.hero .lead{ max-width: 65ch; }
+.hero h1{
+  position:relative; padding-bottom:.2rem;
+}
+.hero h1::after{
+  content:""; display:block; width:64px; height:3px; margin-top:.5rem;
+  border-radius:999px; background: linear-gradient(90deg, var(--brand), var(--accent-2));
+}
+
+/* Ссылки-чипсы в hero */
+.hero .chips a{ border-bottom:none; }
+
+/* ---------- ANNOUNCEMENTS ---------- */
+#announcements .card .card__media{
+  aspect-ratio: 21 / 9; background: var(--surface-alt);
+}
+#announcements .card .card__media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+#announcements .card .eyebrow{ color: var(--text-secondary); }
+#announcements .card .card__body p{ color: var(--text-primary); }
+
+/* ---------- NEWS & EVENTS ---------- */
+#news .grid.grid-cards{ align-items: stretch; }
+#news .card .eyebrow{ color: var(--text-secondary); }
+#news .card .card__body p{ color: var(--text-primary); }
+
+/* ---------- JOIN / MEMBERSHIP ---------- */
+#join .card .card__body p{ color: var(--text-primary); }
+
+/* ---------- RESOURCES ---------- */
+#resources .card .card__body p{ color: var(--text-primary); }
+
+/* ---------- CONTACT CTA ---------- */
+.cta{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  background: color-mix(in oklab, var(--brand) 8%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--brand) 32%, var(--border-color));
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+.cta__actions{ display:flex; gap:.5rem; flex-wrap:wrap; }
+@media (max-width: 780px){
+  .cta{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ---------- Глобальные мелочи для страницы ---------- */
+a{ transition: color .15s ease, background .15s ease, border-color .15s ease; }
+a:focus-visible{ outline:none; box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 20%, transparent); border-radius:8px; }
+.eyebrow{ font-weight:600; letter-spacing:.02em; }
+
+/* Карточки: мягкий hover без агрессивной тени */
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 32px -18px rgba(18, 50, 120, .28),
+    0 0 0 1px color-mix(in oklab, var(--brand) 16%, transparent);
+}
+
+/* ---------- Адаптив сеток ---------- */
+@media (max-width: 980px){
+  .grid.grid-3{ grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 680px){
+  .grid.grid-3, .grid.grid-2{ grid-template-columns: 1fr !important; }
+}
+
+/* =================================================
+   ЛОКАЛЬНЫЕ ТЁМНЫЕ СЕКЦИИ (если решишь затемнить блок)
+   Добавь class="section--dark" на нужный <section>
+   ================================================= */
+.section--dark{
+  --text-primary: #e6eaf2;
+  --text-secondary: #a6b0bf;
+  --border-color: #25304a;
+  --color-link: #8bb6ff;
+  --color-link-hover: #a6c4ff;
+
+  background: #0f1628;
+  color: var(--text-primary);
+  border-top: 1px solid #141c2f;
+}
+.section--dark .card{
+  background: var(--surface-elev);
+  border-color: #25304a;
+}
+.section--dark :is(.muted, .eyebrow, .meta, .card p){ color: var(--text-secondary); }
+.section--dark .btn--outline{
+  --btn-fg: var(--color-link);
+  --btn-border: color-mix(in oklab, var(--color-link) 70%, var(--border-color));
+}

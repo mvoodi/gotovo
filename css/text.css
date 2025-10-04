@@ -1,0 +1,166 @@
+/* ===========================
+   TEXT.CSS — TYPOGRAPHY SYSTEM
+   =========================== */
+
+/* (опционально) подключи шрифты через <link> к Google Fonts:
+   Inter + JetBrains Mono хорошо сочетаются со стилем "технологии".
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+*/
+
+:root {
+  /* базовая типографика */
+  --font-sans: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, -apple-system, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  /* масштаб шрифтов (rem) — аккуратные клампы для адаптива */
+  --text-xs: clamp(0.75rem, 0.72rem + 0.2vw, 0.8rem);
+  --text-sm: clamp(0.875rem, 0.84rem + 0.2vw, 0.95rem);
+  --text-base: clamp(1rem, 0.96rem + 0.25vw, 1.05rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.18rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.38rem + 0.9vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.7rem + 1.2vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 2.1rem + 1.6vw, 3rem);
+  --text-5xl: clamp(3rem, 2.6rem + 2.5vw, 3.75rem);
+  --text-6xl: clamp(3.75rem, 3.2rem + 3vw, 4.5rem);
+
+  /* высота строки и прочее */
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.02em;
+
+  /* цвета берём из colors.css, но сюда добавим fallback */
+  --color-text: #0b1220;      /* fallback, заменится темой */
+  --color-text-muted: #5b6474;/* fallback */
+  --color-link: #2563eb;      /* fallback */
+  --color-link-hover: #1d4ed8;
+
+  /* элементы интерфейса */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+}
+
+/* базовые */
+html { font-size: 16px; }
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+  color: var(--color-text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* заголовки — техно-строго, без лишнего интерлиньяжа */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+  margin: 0 0 0.6em;
+}
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p { margin: 0 0 1em; }
+small, .text-xs { font-size: var(--text-xs); }
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-link) 55%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+a:hover { 
+  color: var(--color-link-hover);
+  border-color: currentColor;
+}
+
+/* списки */
+ul, ol { padding-left: 1.25em; margin: 0 0 1em; }
+li + li { margin-top: .35em; }
+
+/* цитаты и код */
+blockquote {
+  margin: 1.2em 0;
+  padding: .9em 1.1em;
+  border-left: 4px solid color-mix(in oklab, var(--color-link) 35%, transparent);
+  background: color-mix(in oklab, var(--color-link) 6%, white);
+  border-radius: var(--radius-sm);
+}
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+pre {
+  background: color-mix(in oklab, var(--color-link) 8%, white);
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-md);
+  overflow: auto;
+}
+
+/* акценты текста */
+.lead { font-size: var(--text-lg); line-height: var(--lh-relaxed); color: var(--color-text); }
+.eyebrow { 
+  font-size: var(--text-xs); 
+  text-transform: uppercase; 
+  letter-spacing: .12em; 
+  color: var(--color-text-muted); 
+  margin-bottom: .4rem;
+}
+.muted { color: var(--color-text-muted); }
+.mono { font-family: var(--font-mono); letter-spacing: 0; }
+
+/* утилиты размеров */
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+.text-6xl { font-size: var(--text-6xl); }
+
+/* выравнивания и межбуквенные интервалы */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+
+/* таблицы по умолчанию читаемые */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.98em;
+}
+th, td {
+  text-align: left;
+  padding: .65rem .8rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-link) 12%, #e7e9ee);
+}
+th { font-weight: 600; }
+
+/* состояния для dark через класс .theme-dark (и/или медиа) */
+.theme-dark body { color: var(--color-text); }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #e6eaf2;
+    --color-text-muted: #a6b0bf;
+    --color-link: #6ea8fe;
+    --color-link-hover: #8bb6ff;
+  }
+  pre, blockquote {
+    background: color-mix(in oklab, var(--color-link) 12%, #0b1220);
+  }
+  th, td { border-bottom-color: color-mix(in oklab, var(--color-link) 18%, #1a2233); }
+}

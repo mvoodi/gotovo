@@ -1,0 +1,146 @@
+/* ============================
+   faculty.css — Faculty grid (dark)
+   Depends on: colors.css, text.css, ui.css
+   ============================ */
+
+/* page base */
+.theme-dark, :root.theme-dark {
+  background: var(--surface-alt);
+  color: var(--text-primary);
+}
+
+/* hero */
+.hero.hero--gradient{
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* grid tuning */
+.people-grid{
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* card */
+.people-card{
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: .6rem;
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+  box-shadow:
+    0 12px 22px -12px rgba(0,0,0,.45),
+    0 0 0 1px color-mix(in oklab, var(--brand) 12%, transparent);
+}
+.people-card:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--brand) 38%, var(--border-color));
+  box-shadow:
+    0 16px 28px -14px rgba(0,0,0,.48),
+    0 0 0 1px color-mix(in oklab, var(--brand) 22%, transparent);
+}
+
+/* media */
+.people-card__media{
+  position: relative; display:block;
+  aspect-ratio: 3 / 4; background: var(--surface-alt);
+}
+.people-card__media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+
+/* overlay on hover */
+.people-card__overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(10,18,36,.85), rgba(10,18,36,.15));
+  color: #eaf2ff;
+  display:flex; flex-direction:column; justify-content:flex-end; gap:.25rem;
+  padding: .8rem;
+  opacity: 0; transition: opacity .18s ease;
+  border-radius: inherit;
+}
+.people-card__media:hover .people-card__overlay{ opacity: 1; }
+.people-card__overlay .role{
+  display:inline-block;
+  font-size:.85em; font-weight:600;
+  background: color-mix(in oklab, var(--brand) 12%, transparent);
+  border:1px solid color-mix(in oklab, var(--brand) 35%, transparent);
+  padding:.18rem .45rem; border-radius:999px;
+}
+
+/* body */
+.people-card__body{
+  padding: .9rem 1rem 1.1rem;
+  display:flex; align-items:center; justify-content:space-between; gap:.5rem;
+}
+.people-card__body h3{
+  font-size: var(--text-lg);
+  margin:0; color: var(--text-primary);
+}
+
+/* buttons */
+.people-card .btn{ height: 36px; }
+
+/* responsive tweaks */
+@media (max-width: 640px){
+  .people-card__body{ padding: .8rem .85rem 1rem; }
+}
+/* ===== Modal person card ===== */
+.person-dialog::backdrop{
+  background: color-mix(in oklab, var(--brand) 10%, #000) / .6;
+}
+.person-dialog{
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+.person-card{
+  width: min(540px, 92vw);
+  background: var(--surface-elev);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 24px 48px rgba(0,0,0,.55),
+    0 0 0 1px color-mix(in oklab, var(--brand) 18%, transparent);
+  overflow: hidden;
+}
+
+.person-card__header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: .9rem 1rem;
+  background: color-mix(in oklab, var(--brand) 8%, var(--surface));
+  border-bottom: 1px solid var(--border-color);
+}
+.person-card__header h3{ margin:0; color: var(--brand); }
+.person-card__close{
+  appearance:none; border:none; background:transparent;
+  color: var(--text-secondary); font-size: 1.4rem; line-height:1;
+  padding:.2rem .4rem; border-radius: 10px; cursor: pointer;
+}
+.person-card__close:hover{ background: color-mix(in oklab, var(--brand) 10%, transparent); color: var(--text-primary); }
+
+.person-card__body{ padding: 1rem 1.1rem; }
+.person-dl{
+  display:grid; grid-template-columns: 140px 1fr; gap:.5rem 1rem;
+}
+.person-dl dt{
+  color: var(--text-secondary); font-weight:700;
+}
+.person-dl dd{
+  margin:0; color: var(--text-primary);
+}
+.person-card__footer{
+  padding: .8rem 1.1rem 1.1rem; display:flex; justify-content:flex-end;
+  border-top: 1px solid var(--border-color);
+}
+
+/* focus visible for a11y */
+.people-more:focus-visible,
+.person-card__close:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 22%, transparent);
+  border-radius: 10px;
+}
